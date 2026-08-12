@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+let myValue = `Java script`
+
+let newString = myValue.substr(5, 3)
+let anotherString = myValue.substring(5, 8)  // substring works the exact same way as Slice
+
+console.log(newString, anotherString)
+
+
+
+let string = `30 Days Of JavaScript`
+let myArr = string.split(`a`)
+console.log(myArr);
+console.log(string.indexOf(`Script`)) // Will only give the indexOf S 
+
+
+
+let theString = string.toUpperCase().substr(5)
+
+
+
+let school = `  S Q I.`
+school = school.trim()
+
+console.log(school)
+
+school = school.replaceAll(` `, ``)
+console.log(school)
+
+
+
+</script>

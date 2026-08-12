@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="atyleass1">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+
+<input type="text" name="" id="inputField" >
+
+<button onclick="show(event)">Button</button>
+
+<div class="box" id="myField">Result</div>
+
+</body>
+</html>
+<script>
+
+let myInput = document.getElementById(`inputField`)
+
+let myField = document.getElementById(`myField`)
+
+console.log(myInput)
+console.log(myInput.value)
+
+
+
+
+
+
+function show(event){
+
+    let myInputValue = myInput.value.toUpperCase()
+
+    myField.innerHTML = myInputValue
+
+
+    
+
+
+
+
+    // console.log(myInput.value)
+    // myField.innerHTML = `My name is Tayo`
+    // console.log(`This is a text`)
+}
+
+
+// console.log(myField.innerHTML)
+
+// myField.innerHTML = `My name is Tayo`
+
+// let myField = document.getElementById(`myField`)
+
+// console.log(myField.innerHTML)
+
+
+
+// console.log(myInput)
+
+// console.log(myField)
+
+
+</script>

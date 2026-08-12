@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numbers</title>
+</head>
+<body>
+  
+    <input type="text" id="inputField">
+    <input type="text" id="inputField2">
+    <button onclick="add()">add</button>
+
+
+</body>
+</html>
+<script>
+
+
+
+
+
+    let myNumber = 2.041543
+  
+
+    console.log(myNumber.toFixed(2)) // starts from the decimal
+    console.log(myNumber.toPrecision(6)) // starts from the number
+
+
+    let myNumber2 = `500`
+    let myNumber2Number = Number(myNumber2)
+    let total = myNumber2Number + 20
+
+    console.log(total)
+
+
+    let numberFromTrue = Number(true)
+
+    console.log(numberFromTrue)
+
+    let numberFromFalse = Number(false)
+
+    console.log(numberFromFalse)
+
+    let myStringNumber = parseInt(`500abc`)
+
+    console.log(myStringNumber)
+
+    let myFloatNumber = 1.3456
+    let myFloatNumber2 = `1.3456`
+
+    console.log(parseInt(myFloatNumber))
+    console.log(parseFloat(myFloatNumber2))
+
+    console.log(200 +`2`)
+
+    // console.log(Number.isNaN(NaN))
+
+    function add(){
+
+    let inputFieldElement = document.getElementById(`inputField`)
+    let inputFieldValue = Number(inputFieldElement.value)
+
+    console.log(inputFieldValue + 20)
+
+    let inputField2Element = document.getElementById(`inputField2`)
+    let inputField2Value = Number(inputField2Element.value)
+
+    let total = inputFieldValue + inputField2Value
+
+    console.log(Number.isNaN(total))
+
+
+
+
+   // console.log(inputFieldValue + inputField2Value)
+
+    
+
+}
+
+console.log(Number.isInteger(32323))
+
+</script>

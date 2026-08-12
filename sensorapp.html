@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <pre> i         am eating</pre> -->
+    <input type="text" id="sensorInput">
+    <button onclick="sensorWords()"> sensor </button>
+<br>
+<br>
+    <div id="container">
+
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+
+    let sensorTag  = document.getElementById('sensorInput') // <input type="text" id="sensorInput">
+    let container = document.getElementById('container') // <div id="container"> </div>
+    
+
+function sensorWords() {
+    // stupid foolish shit damn 
+    let sensoredValue = sensorTag.value.trim().toLowerCase() // 'that guy behaved stupid'
+    sensoredValue = sensoredValue.replaceAll('stupid' , '******').replaceAll('foolish' , '*******').replaceAll('shit', '****').replaceAll('damn', '****') // 'that guy behaved ******'
+    console.log(sensoredValue); // 'that guy behaved ******'
+
+    container.innerHTML = sensoredValue[0].toUpperCase() + sensoredValue.substr(1) // 'That guy behaved ******'
+    sensorTag.value = ''
+
+}
+
+// let string =  'i am eating'
+// let doesStringStartWithIAm = string.startsWith('I am') //false 
+
+// string.endsWith('eating') // true
+
+
+// concatination & interpolation (string concepts)
+
+let one = 'i am'
+let two = 'loving'
+let three = 'js'
+let space = ' '
+
+
+
+let finalSentence = one + space + two + space + three // 'i am loving js'
+console.log(finalSentence);
+
+let finalSentence2 = `${one} ${two} ${three}`
+console.log(finalSentence2);
+
+// classwork 
+// The sum of 5 and 10 is 15
+let a = 5
+let b = 10
+let firstText = 'the sum of'
+let secondText = 'and'
+let thirdText = 'is'
+
+// concatination
+// let myText = firstText + space + a + space + secondText + space + b + space + thirdText + space + (a + b)
+// console.log(myText);
+
+
+//interpolation
+
+let myText = `${firstText[0].toUpperCase() + firstText.substr(1)} ${a} ${secondText} ${b} ${thirdText} ${a + b}`
+console.log(myText)
+
+// let value = 5 + '5'
+
+
+
+
+
+
+</script>

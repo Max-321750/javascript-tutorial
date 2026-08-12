@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex;" onclick="">
+<!-- 
+    <h3>Hello world</h3> -->
+
+    <input id="inputField" type="text">
+    <button id="submitBtn" onclick="searchWord()">submit</button>
+
+</body>
+</html>
+<script src="intro.js"></script>
+<script>
+
+  function searchWord() {
+    let myName = `Ade`
+    console.log(myName)
+  }
+
+
+let myInputField = document.getElementById(`inputField`)
+
+
+
+// console.log('hello world')
+
+//Primitive data types
+
+// let school = "SQI 1"  // "" '' ``
+
+// console.log(school);
+
+// school = `UI`
+
+// console.log(school);
+
+
+// // Boolean
+
+// let isSqiLightOn = false;
+// let canDelete = false;
+// let conatiner = null;
+
+
+// // Symbol
+
+//  let mame1 = Synbol('john')
+//  let name2 = Symbol(`john`)
+
+//  console.log(name1 == name2);
+
+// let theBody = document.body
+
+// theBody.style.backgroundColor = `red`
+
+// theBody.style.color = `yellow`
+
+
+// non- primitive data types
+
+// let newArr = [ `hello`, `hi`, `null`, `undefined`, 245 , []]
+
+// let cardObj = {
+//     pin: `1344325636464` ,
+//     provider : `MTN` ,
+//     amount : 500
+// }
+
+
+// String Methods
+
+// trim(), trimStart(), trimEnd(), replace(), replaceAll(), subStr(), subString(), toLowerCase(), toUpperCase()
+
+let sentence1 = `Felix is a student`
+
+// console.log(userName.indexOf(`i`))
+// console.log(`Felix is a student`[6])
+// console.log(userName[3])
+// console.log(userName.indexOf(`p`))
+// console.log(userName.indexOf(`i`))
+
+let sentence2 = `    Felix is a boy    `
+
+console.log(sentence2)
+let sentenceTrimmedAtBeginning = sentence2.trimStart() //trimleft()
+let sentenceTrimmedAtEnd = sentence2.trimEnd()  //trimRight()
+
+console.log(sentence2)
+console.log(sentenceTrimmedAtBeginning)
+console.log(sentenceTrimmedAtEnd)
+
+console.log(sentence2.trim())
+
+
+//Substring
+
+let sentence3 = `A new text text`
+
+console.log(sentence3.substr(2, 3))
+
+console.log(sentence3.substring(2, 5))
+console.log(sentence3.substring(2, 10))
+
+console.log(sentence3.length)
+
+console.log(sentence3.replace(`text` , `books`))
+console.log(sentence3.replaceAll(`text` , `books`))
+
+console.log(sentence3.toUpperCase())
+console.log(sentence3.toLowerCase())
+
+console.log(sentence3.charAt(2))
+console.log(sentence3[2])
+
+console.log(sentence3.indexOf(`n`))
+
+
+
+let myString = `This is a new text`
+
+console.log(myString.replace(`text` , `books`))
+
+</script>
