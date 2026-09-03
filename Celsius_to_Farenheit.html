@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celsius To Fahrenheit</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0d0d0d;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      .container {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 30px;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(160, 60, 255, 0.15);
+        border: 1px solid #2e2e2e;
+      }
+
+      h2 {
+        color: #B266FF;
+        margin-top: 0;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 14px 0;
+        background: #1a1a1a;
+        color: #B266FF;
+        font-weight: bold;
+        border: 2px solid #B266FF;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+        margin-bottom: 10px;
+      }
+
+      button:hover {
+        background: #B266FF;
+        color: #0d0d0d;
+        box-shadow: 0 0 20px #B266FF;
+      }
+
+      button:active {
+        transform: scale(0.96);
+      }
+
+      input[type="text"] {
+        width: 100%;
+        background: #0d0d0d;
+        color: #ffffff;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 12px 8px;
+        border: 2px solid #333333;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #B266FF;
+      }
+
+      .output {
+        background: #151515;
+        color: #cccccc;
+        font-size: 1rem;
+        padding: 15px;
+        border-radius: 10px;
+        min-height: 20px;
+      }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>°C to °F</h2>
+
+  <input type="text" id="celsiusField" placeholder="Enter °C">
+ <button onclick="convert()">Convert</button>
+  <div class="output" id="output"></div>
+</div>
+
+<script>
+
+function convertCelsiusToFahrenheit(celsius){
+    let fahrenheit = (celsius * 9/5) + 32
+    return fahrenheit
+}
+
+function convert(){
+    let celsiusElement = document.getElementById(`celsiusField`)
+    let outputField = document.getElementById(`output`)
+
+    let celsiusText = celsiusElement.value.trim()
+
+    if(celsiusText === `` || isNaN(celsiusText)){
+        alert(`Please input a valid number!`)
+    }
+    else{
+
+    let celsius = +celsiusText
+    let fahrenheit = convertCelsiusToFahrenheit(celsius)
+
+    outputField.innerHTML = `${celsius}°C = ${fahrenheit}°F`
+    
+    }
+
+    celsiusElement.value = ``
+}
+
+
+               // Assignment
+               // Generate a recharge card
+</script>
+</body>
+</html>

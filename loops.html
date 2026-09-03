@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+
+    <div id="output">
+
+    </div><br><br>
+    <div id="output1">
+
+    </div>
+</body>
+<script>
+    // for(initialization, condition, increment/decrement){
+    //     // code goes here
+    // }
+
+    // for( let number = 5; number <= 10;  number++){
+    //         console.log(number);
+    // }
+
+    let myArray = ['LAGOS','OYO','KWARA','JOS','RIVERS','ENUGU','IMO','JIGAWA']
+
+    // myArray[2].toLowerCase()
+
+    // myArray.splice(2,1, myArray[2].toLowerCase()) // first method to change a specific value to lowercase
+
+    // myArray[2] = myArray[2].toLowerCase() 
+    // myArray[2] = myArray[2].toLowerCase() 
+    // myArray[2] = myArray[2].toLowerCase()  // second method making use of indexOf()/ []
+
+
+    for(let i = 0; i < myArray.length; i++){          // i < myArray.length OR i <= (myArray.length - 1)
+        myArray[i] = myArray[i].toLowerCase()
+    }
+
+    console.log(myArray)
+    
+
+    let outputField = document.getElementById(`output`)
+  
+    let myArray2 = ['LAGOS','OYO','KWARA','JOS','RIVERS','ENUGU','IMO','JIGAWA','ILORIN']
+
+
+    for(let index = 0; index < myArray2.length; index++){
+        outputField.innerHTML += `${index + 1}.${myArray2[index]} <br>`
+    }
+
+
+    let output1Field = document.getElementById(`output1`)
+
+    for(number = 0; number <= 12; number++){
+
+        let result = 2 * number //
+        output1Field.innerHTML += `2 * ${number} = ${result} <br>`
+    }
+
+    let countries = ['Finland','Rwanda','Canada','USA','Nigeria', 'Austria']
+
+
+    // for(let index=0; index < countries.length ; index++){
+    //      let country = countries[index]; // 
+         
+    //      console.log(country);
+    //      if(country === 'Canada') break;
+
+    // }
+
+    for(let index=0; index < countries.length ; index++){
+         let country = countries[index]; // 
+         
+         if(country === 'Canada') continue;
+
+         console.log(country);
+
+    }
+
+
+
+
+
+
+
+
+
+    //  for(let index = 0; index <= Infinity; index++){
+    //         conole.log(index)
+    //     if(index === 30){
+    //         break;
+    //         }
+    //     }
+
+
+
+
+    // for( let number = 5; number >= -10; number--){
+    //         console.log(number);
+    // }
+
+
+
+</script>
+</html>

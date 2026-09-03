@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditionals</title>
+</head>
+<body>
+
+    <input type="text" name="" id="inputOne"> <!-- 10 -->
+    <input type="text" name="" id="inputTwo"> <!-- 4 -->
+
+    <button onclick="compare()">Submit</button>
+    
+    <input type="text" id="inputField">
+    <button onclick="check()">submit</button>
+    <div id="output"></div>
+
+</body>
+
+<script>
+
+    let ourInputField = document.getElementById('inputField');
+    let ourOutputField = document.getElementById('output');
+
+
+    // if ((3 > 2) && (6 >= 4)) {
+    //     console.log('Code executed successfully');
+    // }
+
+    let valueA = 10   
+    let valueB = 50  
+
+
+    if (valueA > valueB) {
+        console.log(` value ${valueA} is greater than value ${valueB} `);
+    }else{
+        console.log(` value ${valueA} is less than value ${valueB} `)
+    }
+
+
+    // if (condition) {
+        
+    // } else if (condition) {
+        
+    // } else {
+
+    // }
+
+    
+    // function check() {
+
+    //     let inputValue = ourInputField.value.trim()
+    //     let inputLowerCase = inputValue.toLowerCase();
+
+    //     if(inputLowerCase === 'sola') {
+    //         ourOutputField.innerHTML = `Welcome back.. ${inputValue}`;
+    //     }
+
+    // }
+
+     function check() {
+
+        let inputValue = ourInputField.value.trim()
+        let inputLowerCase = inputValue.toLowerCase();
+
+        if(inputLowerCase === 'sola') {
+            ourOutputField.innerHTML = `Welcome back.. ${inputValue}`;
+        }else if(inputLowerCase === 'bayo') {
+            ourOutputField.innerHTML = `Welcome back.. Mr ${inputValue}`;
+        }else if(inputLowerCase === 'bola') {
+            ourOutputField.innerHTML = `Welcome back.. Mrs ${inputValue}`;
+        }else{
+            ourOutputField.innerHTML = `Sorry your name "${inputValue}" is not valid`;
+        }
+
+    }
+
+    function compare() {
+        
+        let inputOneElement = document.getElementById('inputOne');
+        let inputTwoElement = document.getElementById('inputTwo');
+
+        let inputOneValue = +inputOneElement.value.trim()
+        let inputTwoValue = +inputTwoElement.value.trim()
+
+        if(inputOneValue > inputTwoValue) {
+            console.log(`${inputOneValue} is greater than ${inputTwoValue}`);
+        } else {
+            console.log(`${inputOneValue} is less than ${inputTwoValue}`);
+        }
+    }
+
+
+
+
+
+
+// if
+// else if
+// else
+
+// if(3 > 2){
+//     console.log(`Three greater than 2`)
+// }
+// if(2 > 3){
+//     console.log(`Three greater than 2`)
+// }
+// if ((3 > 2) && (6 >= 4)) {
+//     console.log(`Code executed successfully`)
+// }
+// Assignment: Create a guessing application where you comapare the input given is equal to the guess
+
+</script>
+</html>

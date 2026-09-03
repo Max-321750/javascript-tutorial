@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Generator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050505;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      .container {
+        background: #0f0f0f;
+        border-radius: 16px;
+        padding: 30px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(0, 200, 255, 0.2);
+        border: 1px solid #1f1f1f;
+      }
+
+      h2 {
+        color: #00CFFF;
+        margin-top: 0;
+        text-shadow: 0 0 10px #00CFFF;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        background: #050505;
+        color: #ffffff;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 12px 8px;
+        border: 2px solid #222222;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #00CFFF;
+        box-shadow: 0 0 10px #00CFFF;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 14px 0;
+        background: #0f0f0f;
+        color: #00CFFF;
+        font-weight: bold;
+        border: 2px solid #00CFFF;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+        margin-bottom: 20px;
+        text-shadow: 0 0 6px #00CFFF;
+      }
+
+      button:hover {
+        background: #00CFFF;
+        color: #050505;
+        box-shadow: 0 0 25px #00CFFF, 0 0 50px #00CFFF;
+        text-shadow: none;
+      }
+
+      button:active {
+        transform: scale(0.96);
+      }
+
+      .output {
+        max-height: 300px;
+        overflow-y: auto;
+        text-align: left;
+      }
+
+      .colorRow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #cccccc;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+
+      .swatch {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: 1px solid #333333;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px currentColor;
+      }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>RGB Generator</h2>
+
+  <input type="text" id="countField" placeholder="How many colors?">
+  <button onclick="generateColors()">Generate</button>
+
+  <div class="output" id="output"></div>
+</div>
+
+</body>
+<script>
+
+function randomColorValue(){
+    return Math.floor(Math.random() * 256)
+}
+
+function generateColor(){
+    let r = randomColorValue()
+    let g = randomColorValue()
+    let b = randomColorValue()
+    return `rgb(${r}, ${g}, ${b})`
+}
+
+function generateColors(){
+    let countElement = document.getElementById(`countField`)
+    let outputField = document.getElementById(`output`)
+
+    let countText = countElement.value.trim()
+
+    if (countText === ``) {
+        alert(`Input field must not be empty!`)
+    } else if (isNaN(countText)) {
+        alert(`Please input a valid number!`)
+    } else {
+
+        let count = +countText
+
+        outputField.innerHTML = ``
+
+        for(let i = 1; i <= count; i++){
+            let color = generateColor()
+            outputField.innerHTML += `<div class="colorRow"><span class="swatch" style="background:${color}; color:${color}"></span> ${i}. ${color}</div>`
+        }
+
+        countElement.value = ``
+    }
+
+}
+
+
+
+</script>
+</html>

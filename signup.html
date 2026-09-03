@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            margin: auto;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            input{
+                width: 100%;
+                border: solid 1px #eef;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+        <div class="form">
+            <div id="response"></div>
+            <div class="">
+                <input id="fname" type="text" placeholder="firstname">
+            </div>
+
+            <div class="">
+                <input id="lname" type="text" placeholder="lastname">
+            </div>
+
+            <div class="">
+                <input id="uname" type="text" placeholder="username">
+            </div>
+
+            <div class="">
+                <input id="pass" type="password" placeholder="password">
+            </div>
+            <button onclick="submit()">submit</button>
+        </div>
+
+</body>
+</html>
+<script>
+    function submit() {
+        let responseField = document.getElementById('response')
+        let fname = document.getElementById('fname')
+        let lname = document.getElementById('lname')
+        let uname = document.getElementById('uname')
+        let pass = document.getElementById('pass')
+
+        let userFName = fname.value.trim();
+        let userLName = lname.value.trim();
+        let userUName = uname.value.trim();
+        let password = pass.value.trim();
+
+        if(!userFName || !userLName){
+
+            if(!userUName){
+                response.innerHTML = 'you must fill a firstname and lastname and username';
+            }else{
+                response.innerHTML = 'you must fill a firstname and lastname';
+            }
+
+        }
+        
+        // if(!userFName){
+        //    response.innerHTML = 'firstname must be filled';
+        // }else if(!userLName){
+        //     response.innerHTML = 'lastname must be filled';
+        // }else if (!userUName) {
+        //     response.innerHTML = 'username must be filled';
+        // }else if (!password) {
+        //     response.innerHTML = 'password must be filled';
+        // }else{
+        //     response.innerHTML = 'All fields filled successfully'
+        // }
+
+    }
+</script>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myArray2</title>
+</head>
+<body>
+    
+<button onclick="increase()">Increase</button>
+
+</body>
+</html>
+<script>
+
+// let i = 0
+
+// function increase() {
+//     if(i === 4){
+//         i = 0
+//     }
+//     let toIncrease = i++
+//     console.log(myArray[toIncrease])
+// }
+
+// console.log(myArray)
+// myArray[0] = `ìmage30.jpg`
+// myArray[2] = `ìmage40.jpg`
+// console.log(myArray)
+
+// Array Methods
+
+// console.log(myArray.indexOf(`image40.jpg`))
+// console.log(myArray.concat())
+
+let imagesList1 = [`image1.jpg`,`image2.jpg`,`image3.jpg`,`image4.jpg`]
+let imagesList2 = [`image10.jpg`,`image20.jpg`,`image30.jpg`,`image40.jpg`]
+console.log(imagesList1)
+
+// concat
+console.log(imagesList1.concat(imagesList2))
+
+
+// Join
+let names = [`Ola`,`dele`]
+console.log(imagesList1.join())
+
+console.log(names.join())
+console.log(names.join(``))
+console.log(names.join(`&`))
+
+// lastIndexOf
+let array15 = [2,3,5,7,5,10,2,3]
+console.log(array15.lastIndexOf(2))
+
+//includes()
+console.log(names.includes(`dele`))
+
+// pop()
+
+console.log(array15.pop())
+console.log(array15)  
+console.log(array15.pop())
+console.log(array15)
+
+// shift(), unshift(), toString(), reverse(), sort(),splice(), slice(),Array.is
+
+let newArray = [`ade`,`sola`,`bayo`]
+newArray.shift()
+console.log(newArray)
+newArray.shift()
+console.log(newArray)
+
+newArray.unshift(`ball`)
+console.log(newArray)
+
+let myStringifiedArray = newArray.toString()
+
+console.log(myStringifiedArray)
+
+
+// let myList1 = [`HTML`,`CSS`,`JAVASCRIPT`,`PYTHON`,`RUST`,`JAVA`]
+
+// console.log(myList1)
+
+// let newList = myList1.reverse()
+// console.log(newList)
+
+// sort // used to sort in alphabelical order
+
+// let sortedList = myList1.sort()
+// console.log(sortedList)
+
+// slice // start(index) end+1(length)
+
+// let newValue = myList1.slice(1,3)
+// let newValue2 = myList1.slice(2)
+
+// console.log(newValue)
+// console.log(newValue2) // will take everything from the index till the end
+
+// splice 
+// to modify a existing array // start(index) length(starts from the chosen index) // does not need any reassignment 
+// goes straight to the existing array to modify 
+
+let myList2 = [`HTML`,`CSS`,`JAVASCRIPT`,`PYTHON`,`RUST`,`JAVA`]
+
+myList2.splice(2,1,`PHP`,`GO`) // can also replace the removed value with another value
+
+console.log(myList2)
+
+
+
+
+
+
+
+
+</script>

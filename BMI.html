@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+</head>
+<body>
+
+    <input type="text" id="weight" placeholder="weight in kg">
+    <input type="text" id="height" placeholder="height in meters">
+    <button onclick="calculateBMI()"> calculate BMI</button>
+    <div id="output"></div>
+
+</body>
+<script>
+    
+
+    function calculateBMI() {
+
+            let weightField = document.getElementById('weight')
+            let heightField = document.getElementById('height')
+            let outputField = document.getElementById('output')
+
+            let weightValue = +weightField.value.trim();
+            let heightValue = +heightField.value.trim();
+
+            let bmi = weightValue / (heightValue * heightValue); 
+            bmi = bmi.toFixed(1);
+
+            console.log(bmi)
+
+           
+            // if(isNaN(bmi)){
+            //      outputField.innerHTML = "Please enter a valid number";
+            // }else {
+                
+            //     if(bmi < 18.5){
+            //         outputField.innerHTML = "You have an underweight";
+            //     }else if((bmi === 18.5) || (bmi <= 24.9)){
+            //         outputField.innerHTML = "You have a normal weight";
+            //     }else if ((bmi === 25) || (bmi <= 29.9)) {
+            //         outputField.innerHTML = "You have an overweight";
+            //     }else{
+            //         outputField.innerHTML = "You are an obese";
+            //     }
+            // }
+
+            // another approach
+
+            if(bmi < 18.5){
+                outputField.innerHTML = "You have an underweight of "+ bmi;
+            }else if((bmi === 18.5) || (bmi <= 24.9)){
+                outputField.innerHTML = "You have a normal weight"+ bmi;
+            }else if ((bmi === 25) || (bmi <= 29.9)) {
+                outputField.innerHTML = "You have an overweight"+ bmi;
+            }else if(bmi >= 30){
+                outputField.innerHTML = "You are an obese of "+ bmi;
+            }else{
+                outputField.innerHTML = "Please input a valid number";
+            }
+
+
+    }
+
+</script>
+</html>

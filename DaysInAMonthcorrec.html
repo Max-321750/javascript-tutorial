@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="month" type="text">
+    <button onclick="showDays()"> show days </button>
+
+    <p id="output"> </p>
+
+
+    
+</body>
+</html>
+<script>
+    let monthInput = document.getElementById('month')
+
+    function showDays() {
+        let monthValue = monthInput.value.trim().toLowerCase().replaceAll(` `,``)
+     
+        if ( monthValue === '') {
+            alert('input is mandatory')
+        } else if (!isNaN(monthValue) )  {
+          alert('value must not be a number')
+        } else {
+
+            // september , april , june , november = 30 days
+            //  january , march, may , july , august, october, december  = 31 days
+           // february = 28 days
+
+           if ( monthValue === "september" || monthValue === 'april' || monthValue === 'june' || monthValue === 'november' ) {
+                output.innerHTML = `${monthValue[0].toUpperCase()}${monthValue.slice(1)} has 30 days`
+           } else if ( monthValue === 'january' || monthValue === 'march' || monthValue === 'may' || monthValue === 'july' || monthValue === 'august' || monthValue === 'october' || monthValue === 'december'  ) {
+            output.innerHTML = `${monthValue[0].toUpperCase()}${monthValue.slice(1)} has 31 days`
+           } else if ( monthValue  === 'february' ) {
+          output.innerHTML = `${monthValue[0].toUpperCase()}${monthValue.slice(1)} has 28 days`
+           } else {
+             output.innerHTML = 'Invalid Month'
+              
+           } 
+
+
+
+
+
+        }
+
+
+            monthInput.value  = ''
+
+
+
+        
+    }
+
+
+
+    
+
+
+  
+
+
+
+
+
+</script>

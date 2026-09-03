@@ -10,15 +10,12 @@
     <input type="text" id="inputField">
     <input type="text" id="inputField2">
     <button onclick="add()">add</button>
+     <div id="container"></div>
 
 
 </body>
 </html>
 <script>
-
-
-
-
 
     let myNumber = 2.041543
   
@@ -56,29 +53,37 @@
 
     // console.log(Number.isNaN(NaN))
 
-    function add(){
+    function add() {
 
     let inputFieldElement = document.getElementById(`inputField`)
-    let inputFieldValue = Number(inputFieldElement.value)
-
-    console.log(inputFieldValue + 20)
-
     let inputField2Element = document.getElementById(`inputField2`)
-    let inputField2Value = Number(inputField2Element.value)
+    let containerElement = document.getElementById('container') 
 
+   
+    
+    
+    let inputFieldValue = Number(inputFieldElement.value)
+    let inputField2Value = Number(inputField2Element.value)
+   
+    
     let total = inputFieldValue + inputField2Value
 
-    console.log(Number.isNaN(total))
+    containerElement.innerHTML = `The sum of ${inputFieldValue} and ${inputField2Value} = ${total}`
 
 
 
+
+
+
+    // console.log(Number.isNaN(total))
+
+    //  console.log(inputFieldValue + 20)
 
    // console.log(inputFieldValue + inputField2Value)
-
-    
-
 }
 
-console.log(Number.isInteger(32323))
+// console.log(Number.isInteger(32323))
+
+
 
 </script>

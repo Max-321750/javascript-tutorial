@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0d0d0d;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      .container {
+        background: #1a1a1a;
+        border-radius: 16px;
+        padding: 30px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(255, 0, 60, 0.15);
+        border: 1px solid #2e2e2e;
+      }
+
+      h2 {
+        color: #FF3B3B;
+        margin-top: 0;
+      }
+
+      .inputs {
+        display: flex;
+        margin-bottom: 15px;
+        border: 2px solid #FF3B3B;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        width: 50%;
+        min-width: 0;
+        background: #0d0d0d;
+        color: #ffffff;
+        font-size: 1rem;
+        text-align: center;
+        padding: 12px 8px;
+        border: none;
+      }
+
+      input#inputField1 {
+        border-right: 2px solid #FF3B3B;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        background: #1a1a1a;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 14px 0;
+        background: #1a1a1a;
+        color: #FF3B3B;
+        font-weight: bold;
+        border: 2px solid #FF3B3B;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+        margin-bottom: 20px;
+      }
+
+      button:hover {
+        background: #FF3B3B;
+        color: #0d0d0d;
+        box-shadow: 0 0 20px #FF3B3B;
+      }
+
+      button:active {
+        transform: scale(0.96);
+      }
+
+      .tableBox {
+        background: #0d0d0d;
+        border: 2px solid #333333;
+        border-radius: 10px;
+        padding: 12px;
+        color: #ffffff;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        min-height: 30px;
+        text-align: left;
+      }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Multiplication Table</h2>
+
+  <div class="inputs">
+    <input type="text" id="inputField1" placeholder="First Number">
+    <input type="text" id="inputField2" placeholder="Second Number">
+  </div>
+
+  <button onclick="showTable()">Submit</button>
+
+  <div class="tableBox" id="output"></div>
+</div>
+
+<script>
+
+    let myInputField1 = document.getElementById(`inputField1`)
+    let myInputField2 = document.getElementById(`inputField2`)
+    let outputField = document.getElementById(`output`)
+
+function showTable() {
+
+    let inputField1 = +myInputField1.value.trim()
+    let inputField2 = +myInputField2.value.trim()
+
+    
+
+
+    for (let i = inputField1; i <= inputField2; i++) {
+
+        for(let multiplier = 0; multiplier <= 12; multiplier++){
+        let result = i * multiplier
+        outputField.innerHTML += `${i} * ${multiplier}= ${result} <br>`
+        }
+
+       
+
+    }
+
+}
+
+</script>
+</body>
+</html>

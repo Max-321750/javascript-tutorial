@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Random Number Generator</title>
+</head>
+<body>
+
+    <input type="text" id="minField">
+    <input type="text" id="maxField">
+    <button onclick="random()">Submit</button>
+
+</body>
+</html>
+<script>
+
+    let myMinField = document.getElementById(`minField`)
+    let myMaxField = document.getElementById(`maxField`)
+
+function random() {
+
+    let minValue = +minField.value
+    let maxValue = +maxField.value
+
+    let randomNumber = Math.floor(Math.random() * (maxValue - minValue)) + minValue
+
+    console.log(randomNumber)
+}
+
+
+// Assignment Operators
+let numberA = 10
+// numberA = numberA + 11
+
+numberA += 11
+
+console.log(numberA) // 21
+
+numberA -= 2 // 21 - 2 
+
+console.log(numberA) // 19
+
+let numberB = 20
+
+numberB += 10
+
+numberB -= 10
+
+console.log(numberB) //20
+
+numberB *= 20
+
+console.log(numberB) // 400
+
+numberB /= 2
+
+console.log(numberB) // 200
+
+numberB %= 2
+
+console.log(numberB) // 0
+
+
+// Comparison operators
+
+console.log(1 == true) // true: weaker comparison operator
+console.log(1 === true) // false: Strict data-type comparison operator
+console.log(2 > 3) // false
+console.log(2 < 3) // true
+console.log(2 < 3) // true
+console.log(2 === 3) // false
+console.log(3 === 3) // true
+console.log(!true) //false
+console.log(2 != 3) // true
+console.log(3 != 3) // false
+console.log(3 >= 3) // true
+console.log(5 >= 3) // true
+console.log(5 <= 3) // false
+
+
+// falsy values
+// On;
+// false;
+// ''
+// ``
+// ""
+// NaN
+// null
+// undefined
+// 0
+
+
+// Logical Operators
+ 
+console.log(true&&true&&true) // all values must be truthy if this operator is used &&
+console.log(1&&true&&10) // true
+
+console.log(false || true || 0) // atleast one value must be truthy if this operator is used || 
+console.log('sade' || 'bola' || 0) // true
+
+
+
+</script>

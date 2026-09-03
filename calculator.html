@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .calculator {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 60, 130, 0.15);
+    border: 1px solid #e3edfb;
+    width: 320px;
+  }
+
+  .inputs {
+    display: flex;
+    margin-bottom: 15px;
+    border: 2px solid #2f6fed;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    width: 50%;
+    min-width: 0;
+    background: #f4f8ff;
+    color: #1c3d73;
+    font-size: 1rem;
+    text-align: right;
+    padding: 12px 8px;
+    border: none;
+  }
+
+  input#numberField {
+    border-right: 2px solid #2f6fed;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    background: #e3edfb;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 16px 0;
+    border: none;
+    border-radius: 10px;
+    background: #2f6fed;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+
+  button:hover {
+    background: #1d54c4;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  .mod {
+    grid-column: span 2;
+    background: #6fa8ff;
+  }
+
+  .mod:hover {
+    background: #4f8bf0;
+  }
+
+  .display {
+    background: #f4f8ff;
+    color: #1c3d73;
+    font-size: 1rem;
+    padding: 20px 15px;
+    border-radius: 10px;
+    min-height: 30px;
+    word-wrap: break-word;
+    border: 2px solid #cfe0fb;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="inputs">
+    <input type="text" id="numberField" placeholder="Number 1">
+    <input type="text" id="number2Field" placeholder="Number 2">
+  </div>
+  <div class="buttons">
+    <button onclick="add()">+</button>
+    <button onclick="subtract()">−</button>
+    <button onclick="multiply()">×</button>
+    <button onclick="divide()">÷</button>
+    <button class="mod" onclick="modulus()">%</button>
+  </div>
+  <div class="display" id="outputField"></div>
+</div>
+
+<script>
+
+    let myNumberField = document.getElementById(`numberField`)
+    let myNumber2Field = document.getElementById(`number2Field`)
+    let outputField = document.getElementById(`outputField`)
+
+function add() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let addition = numberValue + number2Value
+
+    outputField.innerHTML = `The value of ${numberValue} added to ${number2Value} = ${addition}`
+
+}
+
+function subtract() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let subtraction = numberValue - number2Value
+
+    outputField.innerHTML = `The value of ${numberValue} minus ${number2Value} = ${subtraction}`
+
+}
+
+function multiply() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let multiplication = numberValue * number2Value
+
+    outputField.innerHTML = `The value of ${numberValue} multiplied by ${number2Value} = ${multiplication}`
+
+}
+
+function divide() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let division = numberValue / number2Value
+
+    outputField.innerHTML = `The value of ${numberValue} divided by ${number2Value} = ${division}`
+
+}
+
+function modulus() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let remainder = numberValue % number2Value
+
+    outputField.innerHTML = `The value of ${numberValue} mod ${number2Value} = ${remainder}`
+
+}
+
+</script>
+
+</body>
+</html>

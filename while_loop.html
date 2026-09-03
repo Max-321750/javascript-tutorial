@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHile_Loop</title>
+</head>
+<body>
+ 
+    <div id="output">
+        <input type="text"><button>ADD TODO</button>
+        <div class="">1. LAGOS <button>EDIT</button><button>DELETE</button></div>
+        <div class="">2.      <button>EDIT</button><button>DELETE</button></div>
+        <div class="">2. OYO     <button>EDIT</button><button>DELETE</button></div>
+        <div class="">2. OYO     <button>EDIT</button><button>DELETE</button></div>
+        <div class="">2. OYO     <button>EDIT</button><button>DELETE</button></div>
+        <div class="">2. OYO     <button>EDIT</button><button>DELETE</button></div>
+    </div>
+
+
+    
+</body>
+<script>
+    let myArray = ['LAGOS','OYO','KWARA','JOS','RIVERS','ENUGU','IMO','JIGAWA', "ILORIN","ABUJA"]
+
+    let arrayLength = myArray.length; 
+    let lastIndex = arrayLength - 1;
+
+    let toBeChanged = ['OYO','JOS','ENUGU']
+    // console.log(lastIndex);
+
+    for (let index = 0; index <= lastIndex; index++) {
+        let state =   myArray[index];
+        console.log(state); 
+        if(toBeChanged.includes(state)){
+            myArray[index] = state.toLowerCase();
+        }
+    }
+
+    console.log(myArray);
+
+
+
+    // let myArray2 = ['LAGOS','oyo','KWARA','jos','RIVERS','enugu','IMO','JIGAWA', "ILORIN"]
+
+    // oyo, jos and enugu; 
+
+
+    // let index = 0;
+    // while(index <= 20) {
+    //     console.log(index);
+        
+    //     index++;
+    // }
+
+    // while(index > 5){
+    //     console.log('code ran for while loop');
+    // }
+
+    // let index2 = 6;
+
+    // do {
+    //     console.log('code ran successfully for dowhile loop');
+    //     index2++;
+    // } while (index2 <= 7);
+
+
+</script>

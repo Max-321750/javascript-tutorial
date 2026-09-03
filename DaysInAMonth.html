@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Days In A Month</title>
+</head>
+<body>
+
+    <input type="text" id="monthField" placeholder="Enter a month">
+    <button onclick="checkMonth()">Show Month</button>
+    <div id="outputField"></div>
+
+</body>
+</html>
+<script>
+
+    let myMonthField = document.getElementById(`monthField`)
+    let outputField = document.getElementById(`outputField`)
+
+function checkMonth() {
+
+    let monthValue = myMonthField.value.trim()
+    let monthLowerCase = monthValue.toLowerCase()
+
+    if(monthLowerCase === ``){
+        alert(`input is mandatory`)
+    }
+    else if(!isNaN(monthLowerCase)){
+        alert(`value must not be a number`)
+    }else{
+        
+    if(monthLowerCase === `january`) {
+        outputField.innerHTML = `January has 31 days.`
+    } else if (monthLowerCase === `february`) {
+        outputField.innerHTML = `February has 28 days.`
+    } else if (monthLowerCase === `march`) {
+        outputField.innerHTML = `March has 31 days.`
+    } else if (monthLowerCase === `april`) {
+        outputField.innerHTML = `April has 30 days.`
+    } else if (monthLowerCase === `may`) {
+        outputField.innerHTML = `May has 31 days.`
+    } else if (monthLowerCase === `june`) {
+        outputField.innerHTML = `June has 30 days.`
+    } else if (monthLowerCase === `july`) {
+        outputField.innerHTML = `July has 31 days.`
+    } else if (monthLowerCase === `august`) {
+        outputField.innerHTML = `August has 31 days.`
+    } else if (monthLowerCase === `september`) {
+        outputField.innerHTML = `September has 30 days.`
+    } else if (monthLowerCase === `october`) {
+        outputField.innerHTML = `October has 31 days.`
+    } else if (monthLowerCase === `november`) {
+        outputField.innerHTML = `November has 30 days.`
+    } else if (monthLowerCase === `december`) {
+        outputField.innerHTML = `December has 31 days.`
+    } else {
+        outputField.innerHTML = `"${monthValue}" is not a valid month.`
+    }
+}
+
+}
+
+</script>

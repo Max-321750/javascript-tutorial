@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic-operators</title>
+</head>
+<body>
+
+    <input type="text" id="numberField">
+    <input type="text" id="number2Field">
+    <button onclick="divide()">divide</button>
+    <div id="outputField"></div>
+
+</body>
+</html>
+<script>
+
+let number1 = 4;
+let number2 = 2;
+
+console.log(number1 + number2)
+console.log(number1 - number2)
+console.log(number1 * number2)
+console.log(number1 / number2)
+
+console.log(5 % 2) // FOr the remainder
+
+console.log(2 ** 3) // For raise to power alt is // Math.pow()
+
+console.log(Math.pow(2 , 3))
+console.log(Math.sqrt(64))
+console.log(Math.cbrt(27))
+
+let number3 = 2.1567
+
+console.log(Math.floor(number3))
+console.log(Math.ceil(number3))
+
+let number4 = 1000.1
+
+console.log(Math.ceil(number4))
+console.log(Math.floor(number4))
+
+let number5 = 2.000001 // if it is all 00000 only it will result in an answer of 2
+console.log(Math.ceil(number5))
+
+let number6 = 2.5
+
+console.log(Math.round(number6))
+
+console.log(Math.PI)
+
+let number7 = Number(`1234`) // use of the sign addition can also be used to change to a number which is +`1234`
+let number8 = +`1234`
+
+console.log(typeof number7)
+console.log(typeof number8)
+
+
+    let myNumberField = document.getElementById(`numberField`)
+    let myNumber2Field = document.getElementById(`number2Field`)
+    let outputField = document.getElementById(`outputField`)
+
+function divide() {
+
+    let numberValue = +myNumberField.value.trim()
+    let number2Value = +myNumber2Field.value.trim()
+
+    let divsion = numberValue / number2Value
+
+    
+
+    outputField.innerHTML = `The value of ${numberValue} is divided by ${number2Value} = ${division}`
+
+
+}
+
+// Math.random()  /// 0 - 0.9999
+
+// let myNumber3 = 10
+
+// console.log(Math.random() * 10)  // (0 * 10) (0.9999 * 10)
+
+// console.log(Math.random() * 12)   // (0 * 12) (0.9999 * 12)
+
+// (Math.random()) * 10
+// 
+
+
+let randomX = Math.random()*16
+console.log(Math.ceil(randomX) + 1)
+
+
+Math.random() * 15
+
+console.log(Math.ceil(Math.random() * 15))
+
+console.log(Math.floor(Math.random() * 16))
+
+Math.random() * 15
+
+console.log(Math.ceil(Math.random() * 15) + 2)
+
+// Falsy
+
+undefined
+NaN
+''
+0
+
+// logical operator
+// =
+// ==
+// ===
+
+// Ass; create two input field with a button and anytime the submit button is clicked it will generate the minimum number on 
+// first input and maximum number on the second input 
+
+
+</script>

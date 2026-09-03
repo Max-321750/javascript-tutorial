@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Carousel</title>
+<style>
+  body {
+    margin: 0;
+  }
+
+  .slide {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  button {
+    position: fixed;
+    top: 50%;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  .prev {
+    left: 20px;
+  }
+
+  .next {
+    right: 20px;
+  }
+</style>
+</head>
+<body>
+
+  <img class="slide" id="slideField">
+  <button class="prev" onclick="previousSlide()">Prev</button>
+  <button class="next" onclick="nextSlide()">Next</button>
+
+<script>
+
+    let slideField = document.getElementById(`slideField`)
+
+    let slides = [`1.jpg`,`2.jpg`,`3.png`]
+
+let currentIndex = 0
+
+function nextSlide() {
+
+    if (currentIndex === slides.length - 1) {
+        currentIndex = 0
+    } else {
+        currentIndex++
+    }
+
+    slideField.src = slides[currentIndex]
+
+}
+
+function previousSlide() {
+
+    if (currentIndex === 0) {
+        currentIndex = slides.length - 1
+    } else {
+        currentIndex--
+    }
+
+    slideField.src = slides[currentIndex]
+
+}
+
+slideField.src = slides[currentIndex]
+
+</script>
+
+</body>
+</html>

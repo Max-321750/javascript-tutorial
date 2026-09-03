@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Guessing Game</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d0d;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .game {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 255, 128, 0.15);
+    border: 1px solid #2e2e2e;
+  }
+
+  h2 {
+    color: #7CFFB2;
+    margin-top: 0;
+  }
+
+  p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    background: #0d0d0d;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 12px 10px;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #39FF88;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    border: none;
+    border-radius: 10px;
+    background: #1a1a1a;
+    color: #39FF88;
+    font-weight: bold;
+    border: 2px solid #39FF88;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  }
+
+  button:hover {
+    background: #39FF88;
+    color: #0d0d0d;
+    box-shadow: 0 0 20px #39FF88;
+  }
+
+  button:active {
+    transform: scale(0.96);
+  }
+
+  .output {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    min-height: 30px;
+  }
+</style>
+</head>
+<body>
+
+<div class="game">
+  <h2>Guess The Number</h2>
+  <p>Pick a number between 1 and 10</p>
+
+  <input type="text" id="guessField" placeholder="Enter your guess">
+  <button onclick="checkGuess()">Submit</button>
+
+  <div class="output" id="outputField"></div>
+</div>
+
+<script>
+
+    let myGuessField = document.getElementById(`guessField`)
+    let outputField = document.getElementById(`outputField`)
+
+    let randomNumber = Math.floor(Math.random() * 10) + 1
+
+function checkGuess() {
+
+    let guessValue = +myGuessField.value.trim()
+
+    if (guessValue === randomNumber) {
+        outputField.innerHTML = `Congratulations! You guessed it right! 🎉`
+
+        randomNumber = Math.floor(Math.random() * 10) + 1
+    } else {
+        outputField.innerHTML = `Oops it is wrong, you guessed ${guessValue} but the answer is ${randomNumber} try again`
+    }
+
+
+}
+
+</script>
+
+</body>
+</html>
