@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Pass Carousel</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .stage {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* "Boarding pass" style card instead of a traditional ID card */
+  .pass {
+    width: 340px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+  }
+
+  .pass-main {
+    flex: 1;
+    padding: 24px;
+    position: relative;
+  }
+
+  .pass-main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -14px;
+    height: 100%;
+    width: 28px;
+    background:
+      radial-gradient(circle 7px, #eef2f5 7px, transparent 8px) top left / 28px 28px repeat-y;
+  }
+
+  .pass-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .pass-header .brand {
+    font-weight: bold;
+    color: #10243e;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+
+  .pass-header .badge {
+    background: #d7e33f;
+    color: #10243e;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #dff3fb;
+  }
+
+  .pass-body {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .pass-body .name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #10243e;
+  }
+
+  .pass-body .course {
+    font-size: 0.8rem;
+    color: #55606b;
+  }
+
+  .pass-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dashed #cfe3f0;
+    padding-top: 14px;
+  }
+
+  .pass-row div span {
+    display: block;
+  }
+
+  .label {
+    font-size: 0.65rem;
+    color: #8a97a5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .value {
+    font-size: 0.9rem;
+    color: #10243e;
+    font-weight: bold;
+  }
+
+  .pass-stub {
+    width: 90px;
+    background: #10243e;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pass-stub .id-vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+  }
+
+  /* Carousel controls */
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #10243e;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .nav-btn:hover {
+    background: #16304f;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="stage">
+    <button class="nav-btn" id="prevBtn">&#8592;</button>
+
+    <div class="pass">
+      <div class="pass-main">
+        <div class="pass-header">
+          <span class="brand">Campus Pass</span>
+          <span class="badge">STUDENT</span>
+        </div>
+
+        <div class="pass-body">
+          <img class="avatar" id="studentPhoto" src="" alt="student photo">
+          <div>
+            <div class="name" id="studentName"></div>
+            <div class="course" id="studentCourse"></div>
+          </div>
+        </div>
+
+        <div class="pass-row">
+          <div>
+            <span class="label">ID Number</span>
+            <span class="value" id="studentId"></span>
+          </div>
+          <div>
+            <span class="label">Valid</span>
+            <span class="value">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pass-stub">
+        <span class="id-vertical" id="studentIdStub"></span>
+      </div>
+    </div>
+
+    <button class="nav-btn" id="nextBtn">&#8594;</button>
+  </div>
+</div>
+
+<script>
+
+    // Object-based data — only these fields change per student
+    let students = [
+        {
+            name: `Emmanuel`,
+            idNumber: `SQI-20231045`,
+            course: `Computer Science`,
+            photo: `https://ui-avatars.com/api/?name=Emmanuel&background=10243e&color=fff&size=128`
+        },
+        {
+            name: `Chika`,
+            idNumber: `SQI-20231089`,
+            course: `Software Engineering`,
+            photo: `https://ui-avatars.com/api/?name=Chika&background=16304f&color=fff&size=128`
+        },
+        {
+            name: `Ibrahim`,
+            idNumber: `SQI-20231120`,
+            course: `Information Systems`,
+            photo: `https://ui-avatars.com/api/?name=Ibrahim&background=d7e33f&color=10243e&size=128`
+        },
+        {
+            name: `Mariam`,
+            idNumber: `SQI-20231202`,
+            course: `Data Science`,
+            photo: `https://ui-avatars.com/api/?name=Mariam&background=7CFFB2&color=10243e&size=128`
+        },
+        {
+            name: `Solomon`,
+            idNumber: `SQI-20231311`,
+            course: `Cybersecurity`,
+            photo: `https://ui-avatars.com/api/?name=Solomon&background=ff8080&color=10243e&size=128`
+        }
+    ]
+
+    let currentIndex = 0
+
+    function renderPass(){
+        let student = students[currentIndex]
+
+        document.getElementById(`studentPhoto`).src = student.photo
+        document.getElementById(`studentName`).textContent = student.name
+        document.getElementById(`studentCourse`).textContent = student.course
+        document.getElementById(`studentId`).textContent = student.idNumber
+        document.getElementById(`studentIdStub`).textContent = student.idNumber
+    }
+
+    function showNext(){
+        currentIndex = (currentIndex + 1) % students.length
+        renderPass()
+    }
+
+    function showPrev(){
+        currentIndex = (currentIndex - 1 + students.length) % students.length
+        renderPass()
+    }
+
+    document.getElementById(`nextBtn`).addEventListener(`click`, showNext)
+    document.getElementById(`prevBtn`).addEventListener(`click`, showPrev)
+
+    renderPass()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Users Table</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #eef2f5;
+    padding: 40px;
+  }
+
+  h2 {
+    color: #10243e;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: #10243e;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+  }
+
+  td {
+    border-bottom: 1px solid #e3e9ee;
+    color: #10243e;
+  }
+
+  tr:nth-child(even) {
+    background: #f4f9fc;
+  }
+
+  tr:hover {
+    background: #dff3fb;
+    transition: background 0.15s ease;
+  }
+</style>
+</head>
+<body>
+
+<h2>Users</h2>
+<table id="usersTable">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>Points</th>
+    <th>Logged In</th>
+    <th>Skills</th>
+  </tr>
+</table>
+
+<script>
+    const users = {
+        Alex: {
+            email: 'alex@alex.com',
+            skills: ['HTML', 'CSS', 'JavaScript'],
+            age: 20,
+            isLoggedIn: false,
+            points: 30
+        },
+        Asab: {
+            email: 'asab@asab.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'Redux', 'MongoDB', 'Express', 'React', 'Node'],
+            age: 25,
+            isLoggedIn: false,
+            points: 50
+        },
+        Brook: {
+            email: 'daniel@daniel.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Redux'],
+            age: 30,
+            isLoggedIn: true,
+            points: 50
+        },
+        Daniel: {
+            email: 'daniel@alex.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'Python'],
+            age: 20,
+            isLoggedIn: false,
+            points: 40
+        },
+        John: {
+            email: 'john@john.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Redux', 'Node.js'],
+            age: 20,
+            isLoggedIn: true,
+            points: 50
+        },
+        Thomas: {
+            email: 'thomas@thomas.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'React'],
+            age: 20,
+            isLoggedIn: false,
+            points: 40
+        },
+        Paul: {
+            email: 'paul@paul.com',
+            skills: ['HTML', 'CSS', 'JavaScript', 'MongoDB', 'Express', 'React', 'Node'],
+            age: 20,
+            isLoggedIn: false,
+            points: 40
+        }
+    }
+
+    let table = document.getElementById(`usersTable`)
+
+    for(let user in users){
+
+        let userData = users[user]
+
+        let rowHTML =
+            `<tr>` +
+                `<td>${user}</td>` +
+                `<td>${userData.email}</td>` +
+                `<td>${userData.age}</td>` +
+                `<td>${userData.points}</td>` +
+                `<td>${userData.isLoggedIn ? `Yes` : `No`}</td>` +
+                `<td>${userData.skills.join(`, `)}</td>` +
+            `</tr>`
+
+        table.innerHTML += rowHTML
+
+    }
+
+    
+
+    // let foundUsers = {}
+
+    // let skillsRange = ['MongoDB', 'Express', 'React', 'Node'];
+    
+    // for(let user in users){
+
+    //     let userData = users[user];
+    //     let userSkills = userData.skills;
+
+    //     // let userSkillsArr = []; 
+    //     let counter = 0;
+
+    //     for(skills = 0; skills < skillsRange.length; skills++){
+    //         if(userSkills.includes( skillsRange[skills] )){
+    //             // userSkills.push( skillsRange[i] )
+    //             counter++;
+    //         }
+    //     }
+
+    //     if(counter === 4){
+    //             foundUsers[user] = userData;
+    //     }
+        
+    // }
+    
+    // console.log(foundUsers);
+    
+    // let languages = {
+    //     'na me': 'ade',
+    //     age: 50,
+    //     'da ta': [
+    //         'HTML','CSS','PYTHON','RUST'
+    //     ],
+    //     'add' : function(num1, num2) {
+    //         this.total = num1 + num2
+    //     },
+    //     'total': 0,
+    // }
+
+    // // console.log(languages.addex(200, 30));
+    // // console.log(languages);
+
+    // // console.log(languages['age']);
+    // // // console.log(languages.data[1]);
+    // console.log(languages.add(250, 3)); // 
+    // console.log(languages); // 
+    // console.log(languages.add(10, 5)); // 
+    // console.log(languages); // 
+
+    // // let myObject = new Object();
+
+    // // console.log(Object.keys(languages));
+    
+
+    // // To create Object method 1 
+    // let data1 = {
+    //     'name': 'ade',
+    //     'class': 'level 2',
+    //     'country': 'finland'
+    // }
+    // let data2 = new Object;
+
+    // data2['name'] = 'ade';
+
+    // let html = '';
+
+    // let Objectkeys =  Object.keys(data1); /// [name, class, country]
+
+    // // for(let i = 0;  i < Objectkeys.length; i++){
+
+    // //      let key = Objectkeys[i]; 
+
+    // //     html += key + ': ' + data1[key] + '<br>'
+
+    // // }
+
+    // // for(let key in data1){
+    // //         html += key + ': ' + data1[key] + '<br>' 
+    // // }
+
+    // // output.innerHTML = html
+
+    // // console.log(Object.keys(data1));
+    // // console.log(Object.values(data1));
+    
+
+
+    // create a table 
+
+</script>
+</body>
+</html>
