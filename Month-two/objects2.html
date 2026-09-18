@@ -11,18 +11,131 @@
 </html>
 <script>
 
-// let student
+
+    // let student = new Object()
+    let student = {
+        name : 'daniel' ,
+        courseName : 'js' , 
+        height: '45m' , 
+        talk : function (params) {
+             console.log('I AM TALKING');
+             
+        }
+    }
+
+student.name = 'shola'
+console.log(student.height);
+console.log(student['height']);
+
+student.talk()
+student['talk']()
+
+
+for ( k in student){
+console.log(k , student[k]);
+}
+
 
 let obj = {
-    name: [`find` , `eat`,{
-        newClass: `ss2`,
-        students: [`tola` , `tolu` ,`bola` ,
-            [{name: `dee`},
-            {name: `fola`},
-            {name: `duro`}]]
+        name: [ 'find' , 'eat' , {
+        newClass: 'ss2', 
+        students: [ 'tola' , 'tolu' , 'bola', 
+        [{name:'dee'} , 
+        {name:'fola'} ,
+         {name: 'duro'}]]
     }]
+   }
+console.log(obj.name[2].students[2])
+console.log(obj.name[2].students[3][0])
+
+
+
+
+
+
+
+
+
+
+let newVal = 'hello'
+// newVal[0] = 'y'
+// console.log(newVal);
+newVal = 'yello'
+
+
+
+
+
+const users = {
+  Alex: {
+    email: 'alex@alex.com',
+    skills: ['HTML', 'CSS', 'JavaScript'],
+    age: 20,
+    isLoggedIn: false,
+    points: 30
+  },
+  Asab: {
+    email: 'asab@asab.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Redux', 'MongoDB'
+    , 'Express', 'React', 'Node'],
+    age: 25,
+    isLoggedIn: false,
+    points: 50
+  },
+  Brook: {
+    email: 'daniel@daniel.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Redux'],
+    age: 30,
+    isLoggedIn: true,
+    points: 50
+  },
+  Daniel: {
+    email: 'daniel@alex.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Python'],
+    age: 20,
+    isLoggedIn: false,
+    points: 40
+  },
+  John: {
+    email: 'john@john.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Redux', 'Node.js'],
+    age: 20,
+    isLoggedIn: true,
+    points: 50
+  },
+  Thomas: {
+    email: 'thomas@thomas.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'React'],
+    age: 20,
+    isLoggedIn: false,
+    points: 40
+  },
+  Paul: {
+    email: 'paul@paul.com',
+    skills: ['HTML', 'CSS', 'JavaScript', 'MongoDB', 'Express', 'React', 'Node'],
+    age: 20,
+    isLoggedIn: false,
+    points: 40
+  }
 }
-console.log
+
+let usersWithPointsAbove50 = []
+
+
+for ( user in users ) {
+  
+   let individualUserObj =  users[user]
+    
+    if (individualUserObj.points >= 50) {
+         usersWithPointsAbove50.push(user)
+    }
+    
+}
+
+console.log(usersWithPointsAbove50);
+
+
+
 
 </script>
 

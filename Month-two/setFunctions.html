@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myImg{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <img src="" width="300" height="300" id="myImg" alt="">
+    <button id="myButton" onclick="displayImage()" > Show Image  </button>
+
+
+    <h4 style="color:whitesmoke;" id="num"> 10</h4>
+    <button onclick="countDown()"> CountDown </button>
+
+    
+
+</body>
+</html>
+<script>
+
+let num = document.getElementById('num')
+
+// setTimeout(()=> {
+
+// console.log('hey class');
+
+
+// } , 5000 )
+
+
+function displayImage() {
+    let buttonTag = document.getElementById('myButton')
+    setLoadingState(buttonTag , true)
+   setTimeout(() => {
+     myImg.src = 'https://i.ebayimg.com/images/g/RVcAAOSwfr1jk~3U/s-l1600.webp'
+    myImg.style.display = 'block'
+    alert('Image uploaded successfully')
+    setLoadingState(buttonTag , false)
+   }, 3000);
+}
+
+
+
+function setLoadingState( element ,  bool ) {
+  element.innerHTML =   bool ?  'loading...' : 'Show Image'
+  element.disabled = bool
+}
+
+
+// setInterval 
+
+
+
+
+
+// #a90cb2 rgb(0-255,0-255,0-255)
+
+// document.body.style.backgroundColor = '#a90cb2'
+
+// function genRgbColor() {
+//     function r(params) {
+//         let random0to255Num = Math.floor(Math.random() * 256)
+//         return random0to255Num
+//     }
+//     return `rgb(${r()},${r()},${r()})`  
+// }
+
+// console.log(genRgbColor());
+
+
+
+// setInterval(()=> {
+// document.body.style.backgroundColor = genRgbColor()
+// }, 2000)
+
+
+
+function countDown() {
+    let number = +num.innerHTML
+    console.log(number);
+
+  let decreaseVal = setInterval(() => {
+         number--
+         if (number === 0) {
+          clearInterval(decreaseVal)
+          alert('Time Up!')
+         }
+
+       num.innerHTML = number  
+    }, 1000);
+      
+}
+
+
+function genHexaColor() {
+
+function h(params) {
+    let randomHexaColors = [`a`,`b`,`c`,`d`,`e`,`f`,`1`,`2`,`3`,`4`,`5`,`6`,`7`,`8`,`9`]
+     let randomIndex = Math.floor(Math.random() * randomHexaColors.length)
+        return randomHexaColors[randomIndex]
+    
+}
+
+ return `#${h()}${h()}${h()}${h()}${h()}${h()}`
+
+}
+console.log(genHexaColor())
+
+setInterval(()=> {
+document.body.style.backgroundColor = genHexaColor()
+}, 2000)
+
+
+</script>

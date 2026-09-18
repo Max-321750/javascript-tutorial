@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up Form</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .card {
+    width: 360px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    padding: 36px;
+  }
+
+  h2 {
+    margin: 0 0 24px 0;
+    color: #10243e;
+    font-size: 1.4rem;
+  }
+
+  label {
+    display: block;
+    color: #55606b;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 2px solid #cfe3f0;
+    border-radius: 8px;
+    color: #10243e;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #10243e;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .checkbox-row label {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #55606b;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px 0;
+    background: #d7e33f;
+    color: #10243e;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #c3ce2f;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Create an Account</h2>
+
+  <label for="nameInput">Full Name</label>
+  <input type="text" id="nameInput" placeholder="e.g Emmy James">
+
+  <label for="emailInput">Email</label>
+  <input type="email" id="emailInput" placeholder="e.g emmy@email.com">
+
+  <label for="passwordInput">Password</label>
+  <input type="password" id="passwordInput" placeholder="Enter a password">
+
+  <div class="checkbox-row">
+    <input type="checkbox" id="privacyCheckbox">
+    <label for="privacyCheckbox">I agree to the Privacy Policy</label>
+  </div>
+
+  <button onclick="signUp()">Sign Up</button>
+</div>
+
+<script>
+
+    let registeredUsers = []
+
+    function signUp(){
+        let nameElement = document.getElementById(`nameInput`)
+        let emailElement = document.getElementById(`emailInput`)
+        let passwordElement = document.getElementById(`passwordInput`)
+        let privacyElement = document.getElementById(`privacyCheckbox`)
+
+        let name = nameElement.value.trim()
+        let email = emailElement.value.trim()
+        let password = passwordElement.value.trim()
+        let agreedToPrivacy = privacyElement.checked
+
+        if(name === `` || email === `` || password === ``){
+            alert(`Please fill in all fields before signing up.`)
+            return
+        }
+
+        if(!agreedToPrivacy){
+            alert(`You must agree to the Privacy Policy to sign up.`)
+            return
+        }
+
+        let alreadyExists = registeredUsers.some(function(user){
+            return user.email.toLowerCase() === email.toLowerCase()
+        })
+
+        if(alreadyExists){
+            alert(`This email has already been registered.`)
+            return
+        }
+
+     
+        let newUser = {
+            name: name,
+            email: email,
+            password: password
+        }
+
+        registeredUsers.push(newUser)
+
+        console.log(registeredUsers)
+
+        alert(`Sign up successful! Welcome, ${name}.`)
+
+        nameElement.value = ``
+        emailElement.value = ``
+        passwordElement.value = ``
+        privacyElement.checked = false
+    }
+
+</script>
+</body>
+</html>

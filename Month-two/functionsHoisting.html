@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions_Hoisting</title>
+</head>
+<body>
+   
+    
+
+</body>
+</html>
+<script>
+
+
+// var myFood = undefined
+// function callHome(params) {
+//  return 'hi family'
+// }
+
+    console.log(myFood);
+    
+    var myFood = 'Rice'
+
+    console.log(myFood);
+
+ let finalSentence = callHome() + ', hope you guys are fine'
+ console.log(finalSentence);
+ 
+
+
+    
+// function declaration
+function callHome(params) {
+  return 'hi family'
+}
+
+// function expression 
+let callerFunc = function (params) {
+     return 'i called'
+}
+    
+callerFunc();
+
+// IIFE
+
+(function (params) {
+    console.log('hmmm');
+    
+}())
+
+
+// arrow functions
+
+let theFunc =  (params) => {
+
+
+}
+
+
+function multiplyBy2( n ) {
+     return function newone() {
+      return  n * 2  
+     }
+}
+
+console.log(multiplyBy2(4)());
+
+// multiplyBy2(34)
+// multiplyBy2(40)
+
+
+
+
+// HOF 
+
+// foreach map find findIndex filter some every reduce
+ // (arraymethods functions loops)
+
+//  foreach
+ let arr = [1,2,3,4,5]
+
+ let value = arr.forEach( function ( num , i ) {               // foreach returns a datatyoe of undefined
+    console.log( num , i );
+    return '67'
+ })
+
+ console.log(value);
+
+ let value2 = arr.map(( num , i , arr )=> {                 // map is used for building an array within an array
+ console.log( num , i );                                    // map returns a datatyoe of an array
+                                                            // find is 
+                                                            //findIndex will always return a datatype of number
+ })                                                          // filter returns a datatype of an array
+                                                            // if the functionality in the return is a falsy value nothing will be allowed in the array
+                                                            // some is used to check if a particular value meets a condition in an array
+                                                            // every is used to check if all the values meets a condition the in an array
+                                                            // isNaN only checks for numerical value ina data even if the data is a string
+                                                            // isNaN(checks for not being a numerical value)
+                                                            // !isNaN(because of the (!) changes the isNaN it will check for a numerical value)
+                                                            // reduce is a higherorderfuction that can be used to add/subrtact/multiply e.t.c everything in an array
+
+
+//  for (let index = 0; index < arr.length; index++) {
+//    console.log(arr[index]);
+   
+    
+//  }
+
+
+
+
+// function sayHi(params) {
+//     console.log('hiiiii');
+// }
+ // map
+
+ // [2  , 2 , 2 , 2 , 2 ]
+ let newArr = arr.map(( num , i , arr )=> {
+ console.log( num , i );
+  return  `student${i + 1}`
+ })
+ 
+ console.log(newArr);
+ 
+
+// find
+ 
+let fruits = ['cherry' , 'orange' , 'mango' , 'strawberry']
+
+let foundFruit = fruits.find((fruit , i , arr  )=> {return fruit.length === 4 })
+
+let theFruit  
+for (let index = 0; index < fruits.length; index++) {
+    if (fruits[index].length === 4) {
+        theFruit = fruits[index]
+        break
+    } 
+}
+
+console.log(theFruit);
+
+// find Index
+
+let foundFruitIndex = fruits.findIndex((fruit , i , arr  )=> {return fruit.length === 5 })
+console.log(foundFruitIndex);
+
+
+// filter
+
+let filteredFruits =  fruits.filter(( fruit , i , arr) => {
+       
+       return  fruit.length <= 6
+})
+
+console.log(filteredFruits);
+
+
+// some 
+
+let nums = [1 ,2 , 3, 4 , 6 , 7 , 78]
+
+let isThereAtleastOneString = nums.some (( num , i , arr)=> {
+  return typeof num === "string"
+})
+
+
+console.log(isThereAtleastOneString);
+
+// every 
+
+let isEveryValueaNumericalValue = nums.every(( num , i , arr)=> {
+  return !isNaN(num)
+})
+
+console.log(isEveryValueaNumericalValue);
+
+
+// reduce
+let numss = [1 ,2 , 3, 4 , 6 , 7 , 78]
+
+let total = 0
+
+for (let index = 0; index < numss.length; index++) {
+     total += numss[index]
+}
+
+console.log(total);
+
+let myTotal = numss.reduce(( p , c , i , arr )=> {  return p + c } , 0 )
+console.log(myTotal);
+
+
+
+
+</script>
+
+// Ass; create a search bar whereby a set of displayed values will be given and any time a value is inputed it will filter the ones with that particular values

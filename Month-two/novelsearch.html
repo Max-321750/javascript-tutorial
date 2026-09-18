@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novel Search</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  .container {
+    width: 380px;
+  }
+
+  h2 {
+    color: #10243e;
+    margin-bottom: 16px;
+  }
+
+  .search-wrapper {
+    position: relative;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 2px solid #cfe3f0;
+    border-radius: 8px;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #10243e;
+  }
+
+  .suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+  }
+
+  .suggestion-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    color: #10243e;
+    font-size: 0.9rem;
+  }
+
+  .suggestion-item:hover {
+    background: #dff3fb;
+  }
+
+  .no-match {
+    padding: 10px 14px;
+    color: #8a97a5;
+    font-size: 0.85rem;
+  }
+
+  .result-card {
+    margin-top: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    display: none;
+  }
+
+  .result-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .result-card .info {
+    padding: 16px;
+  }
+
+  .result-card .title {
+    font-weight: bold;
+    color: #10243e;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .result-card .genre {
+    color: #55606b;
+    font-size: 0.85rem;
+  }
+
+  .placeholder-note {
+    margin-top: 6px;
+    font-size: 0.7rem;
+    color: #8a97a5;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Search a Novel</h2>
+
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Type a title..." autocomplete="off">
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <img id="resultImage" src="" alt="cover">
+    <div class="info">
+      <div class="title" id="resultTitle"></div>
+      <div class="genre" id="resultGenre"></div>
+      <div class="placeholder-note">Placeholder cover — swap in real artwork you have rights to use.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+   
+    let novels = [
+        { title: `Swallowed Star`, genre: `Sci-fi / Progression Fantasy` },
+        { title: `Perfect World`, genre: `Xianxia / Cultivation` },
+        { title: `Shrouding the Heavens`, genre: `Xianxia / Cultivation` },
+        { title: `Soul Land`, genre: `Fantasy / Cultivation` },
+        { title: `Jujutsu Kaisen`, genre: `Dark Fantasy / Action` },
+        { title: `Blue Lock`, genre: `Sports / Psychological` },
+        { title: `Naruto`, genre: `Action / Adventure` },
+        { title: `Library of Heaven's Path`, genre: `Gao Wu / Cultivation` },
+        { title: `Martial Peak`, genre: `Gao Wu / Cultivation` },
+        { title: `The New Gate`, genre: `Gao Wu / LitRPG` },
+        { title: `Warlock of the Magus World`, genre: `Gao Wu / Sci-fantasy` }
+    ]
+
+    function buildPlaceholderImage(title){
+        let encodedTitle = encodeURIComponent(title)
+        return `https://ui-avatars.com/api/?name=${encodedTitle}&background=10243e&color=fff&size=256&bold=true&length=2`
+    }
+
+    function renderSuggestions(matches){
+        let suggestionsElement = document.getElementById(`suggestions`)
+
+        if(matches.length === 0){
+            suggestionsElement.innerHTML = `<div class="no-match">No matches found.</div>`
+            suggestionsElement.style.display = `block`
+            return
+        }
+
+        let html = ``
+
+        for(let i = 0; i < matches.length; i++){
+            html = html + `<div class="suggestion-item" data-title="${matches[i].title}">${matches[i].title}</div>`
+        }
+
+        suggestionsElement.innerHTML = html
+        suggestionsElement.style.display = `block`
+
+        let items = suggestionsElement.querySelectorAll(`.suggestion-item`)
+
+        for(let i = 0; i < items.length; i++){
+            items[i].addEventListener(`click`, function(){
+                let chosenTitle = items[i].getAttribute(`data-title`)
+                selectNovel(chosenTitle)
+            })
+        }
+    }
+
+    function handleSearchInput(){
+        let searchInputElement = document.getElementById(`searchInput`)
+        let searchValue = searchInputElement.value.trim().toLowerCase()
+
+        let suggestionsElement = document.getElementById(`suggestions`)
+
+        if(searchValue === ``){
+            suggestionsElement.style.display = `none`
+            suggestionsElement.innerHTML = ``
+            return
+        }
+
+        let matches = novels.filter((novel) => {
+            return novel.title.toLowerCase().includes(searchValue)
+        })
+
+        renderSuggestions(matches)
+    }
+
+    function selectNovel(title){
+        let novel = novels.find((n) => n.title === title)
+
+        if(!novel){
+            return
+        }
+
+        document.getElementById(`resultImage`).src = buildPlaceholderImage(novel.title)
+        document.getElementById(`resultTitle`).textContent = novel.title
+        document.getElementById(`resultGenre`).textContent = novel.genre
+
+        document.getElementById(`resultCard`).style.display = `block`
+
+  
+        document.getElementById(`searchInput`).value = novel.title
+        document.getElementById(`suggestions`).style.display = `none`
+    }
+
+    document.getElementById(`searchInput`).addEventListener(`keyup`, handleSearchInput)
+
+    document.addEventListener(`click`, function(event){
+        let searchWrapper = document.querySelector(`.search-wrapper`)
+
+        if(!searchWrapper.contains(event.target)){
+            document.getElementById(`suggestions`).style.display = `none`
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Pass Carousel</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Student Pass Carousel</title>
 <style>
   * {
     box-sizing: border-box;
@@ -25,7 +25,6 @@
     gap: 24px;
   }
 
-  /* "Boarding pass" style card instead of a traditional ID card */
   .pass {
     width: 340px;
     background: #ffffff;
@@ -143,7 +142,6 @@
     font-size: 0.85rem;
   }
 
-  /* Carousel controls */
   .nav-btn {
     width: 44px;
     height: 44px;
@@ -210,7 +208,6 @@
 
 <script>
 
-    // Object-based data — only these fields change per student
     let students = [
         {
             name: `Emmanuel`,
@@ -256,20 +253,29 @@
         document.getElementById(`studentIdStub`).textContent = student.idNumber
     }
 
-    function showNext(){
-        currentIndex = (currentIndex + 1) % students.length
+     function showNext(){
+        currentIndex = currentIndex + 1
+ 
+        if(currentIndex >= students.length){
+            currentIndex = 0
+        }
+ 
         renderPass()
     }
-
+ 
     function showPrev(){
-        currentIndex = (currentIndex - 1 + students.length) % students.length
+        currentIndex = currentIndex - 1
+ 
+        if(currentIndex < 0){
+            currentIndex = students.length - 1
+        }
+ 
         renderPass()
     }
+   document.getElementById(`nextBtn`).onclick = showNext
+   document.getElementById(`prevBtn`).onclick = showPrev
 
-    document.getElementById(`nextBtn`).addEventListener(`click`, showNext)
-    document.getElementById(`prevBtn`).addEventListener(`click`, showPrev)
-
-    renderPass()
+      renderPass()
 
 </script>
 </body>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+
+
+
+    <h1>start</h1>
+    
+<button class="hey"> <i> click  </i> <b>here </b></button>
+
+
+<p> wow </p>
+
+
+<button class="hey"> <i> click  </i> <b>here </b></button>
+
+<input onfocus="closeThis(event)" type="text">
+
+<button class="hey"> <i> click  </i> <b>here </b></button>
+
+</body>
+</html>
+<script>
+
+function runThis(e) {
+    console.log(e);
+    e.target.style.backgroundColor = 'yellow'
+    e.target.parentElement.style.backgroundColor = 'blue'
+ e.target.nextElementSibling.nextElementSibling.style.outlineColor = 'purple'
+   console.log(e.target.nextElementSibling.nextElementSibling);
+   
+}
+
+
+function jump(params) {
+    console.log('i am jumping')
+}
+
+
+function closeThis(ev) {
+    ev.target.style.outlineColor = 'green'
+      ev.target.style.borderColor = 'orange'
+
+}
+
+
+let button = document.querySelector('.hey')
+// do not call the function while using add event listener
+button.addEventListener( 'click' , runThis )
+button.addEventListener( 'mouseover' , jump )
+
+
+
+
+
+
+
+
+
+</script>
