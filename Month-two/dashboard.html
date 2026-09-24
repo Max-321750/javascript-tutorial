@@ -42,10 +42,10 @@
       <label for="postBody"> Content </label>
       <textarea id="postBody" placeholder="Start writing..." ></textarea>
     </div>
-    <div class="field">
+<div class="field">
     <label for="postImage">Add a picture</label>
     <input type="file" id="postImage" accept="image/*" onchange="pickPicture(event)" >
-    <img width="200" height="200" id="myImage" src="" alt="Image preview" style="display: none;" >
+    <img width="200" height="200" id="myImage" src="" alt="" style="display: none;" >
 </div>
     <button type="submit" class="btn" > Publish </button>
   </form>
@@ -66,7 +66,7 @@
 
     let currentUser = allUsers[currentUserIndex];
 
-  let selectedImage = "";
+    let selectedImage = "";
 
     function pickPicture(ev) {
         let inputTag = ev.target;
@@ -165,7 +165,7 @@
         localStorage.setItem( "EquinxPosts", JSON.stringify(allPosts) );
 
         document .getElementById("postForm") .reset();
-        
+
         selectedImage = "";
 
         document.getElementById("myImage").style.display = "none";
@@ -173,7 +173,6 @@
         displayPosts()
 
         alert("Post published successfully!");
-
 
       });
 
@@ -206,7 +205,7 @@
         postDiv.className = "post";
         postDiv.innerHTML = ` <h3>${post.title}</h3> 
         <p>${post.body}</p> 
-        
+
         ${ 
         post.image ? 
         `<img src="${post.image}" 

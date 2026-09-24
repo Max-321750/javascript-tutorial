@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESTRUCTURING & SPREADING</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    let newArr = [`tolu` , `bola` , `yimika` , `pelumi`]  // since forthname is available then the defaultvalue(lola) is no longer useful
+
+    let [ firstName , secondName , thirdName , forthName = `lola`] = newArr
+    // let firstName = `tolu`
+    // let secondName = `bola`
+    // let thirdName = `yimika`
+    // let forthName = `lola`
+    newArr[1] = `bolu`
+    console.log(secondName);
+    console.log(forthName);
+
+    function add2(num = 0) {
+        return num + 2   
+    }
+
+    console.log(add2(5));
+    console.log(add2(10));
+    console.log(add2(20));
+    console.log(add2());
+
+    let newNumbers = [1,2,3,4,5,6]
+
+    let [ one , two , three , ...others] = newNumbers    
+
+
+    let latestNums = [ ...newNumbers , 7, 8]
+
+
+    const ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
+    console.log(Math,min(...ages));
+    console.log(Math.max(...ages));
+    
+
+    // obj destructuring
+
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+</script>

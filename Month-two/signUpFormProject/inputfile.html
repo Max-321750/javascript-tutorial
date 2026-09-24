@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inputfile</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="file" onchange="pickPicture(event)">
+
+    <img width="200" height="200" id="myImage" src="" alt="">
+
+
+</body>
+<script>
+   
+    function pickPicture(ev) {
+        console.log(ev);
+        
+        let inputTag = ev.target 
+        let file = inputTag.files[0]
+        console.log(file);
+        
+
+        if (!file) {
+            alert('please attach a file')
+            return
+        } 
+
+
+        if (file.size/1000 >= 150 ) {
+             alert('file is too large , must be less than 150kb')
+             return
+        }
+
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+
+    
+        reader.addEventListener( 'load' , (e)=> {
+            let image = e.target.result
+            myImage.src = image
+            myImage.style.display = 'block'
+        } )
+
+        
+    }
+
+
+    let array = new Array()
+    let arr = []
+
+
+
+
+
+
+
+</script>
+</html>

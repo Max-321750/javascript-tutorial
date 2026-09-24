@@ -604,6 +604,49 @@ color: #999;
     margin-top: 18px;
 }
 
+#postImage {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px dashed #cfd5da;
+  border-radius: 10px;
+  background: #fafbfc;
+  color: #687078;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#postImage:hover {
+  border-color: #087f5b;
+  background: #f7faf9;
+}
+
+
+#myImage {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin-top: 15px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #e0e3e6;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+.post-image {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  max-height: 400px;
+  margin: 18px 0;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+
 
 .edit-btn {
     padding: 8px 16px;
