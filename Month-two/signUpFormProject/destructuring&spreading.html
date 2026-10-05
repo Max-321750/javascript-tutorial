@@ -46,6 +46,76 @@
 
     // obj destructuring
 
+    let myStudent = {
+    name:'david', 
+    course: 'js'  ,
+}
+
+let { course:c , name:n , height:h = 23 } = myStudent
+console.log(c);
+console.log(n);
+console.log(h);
+
+c = 'python'
+myStudent.course = 'python'
+console.log(myStudent);
+console.log(c);
+
+
+// 1st usecase
+function calculatePerimeter({height:h , breadth:b}) {
+     return 2 * (h + b)
+}
+
+
+let rectangle1 = {
+    height: 10 ,
+    breadth : 23
+}
+
+let rectangle2 = {
+    height: 100 ,
+    breadth : 200
+}
+
+console.log(calculatePerimeter(rectangle1));
+console.log(calculatePerimeter(rectangle2));
+
+
+
+const todoList = [
+{
+  task:'Prepare JS Test',
+  time:'4/1/2020 8:30',
+  completed:true
+},
+{
+  task:'Give JS Test',
+  time:'4/1/2020 10:00',
+  completed:false
+},
+{
+  task:'Assess Test Result',
+  time:'4/1/2020 1:00',
+  completed:false
+}
+]
+
+// second usecase 
+todoList.forEach(({ task:ta , time:ti , completed:co} , i , arr )=> {
+    console.log(ta , ti , co);
+})
+
+
+// third usecase 
+
+let school = {
+    name: 'SQI' , 
+    location:'Dugbe'
+}
+
+let schoolTwo= {...school , name:'kenny-tech'}
+console.log(schoolTwo);
     
     
     
