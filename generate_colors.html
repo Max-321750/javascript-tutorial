@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="count"><button onclick="generateColors()">Generate colors</button>
+
+    <div id="output"></div>
+
+</body>
+<script>
+
+    let count = document.getElementById('count') ;
+    
+    function generateColors() {
+
+        let numberOfColors = count.value.trim(); 
+
+        if(!numberOfColors) return alert('Input a valid value'); // validation
+
+        numberOfColors = +numberOfColors;
+
+        if(isNaN(numberOfColors)) return alert('Please input a valid number'); // validation
+
+
+        function generatOneColor() {
+            return Math.floor(Math.random() * 256); 
+        }
+
+        let allColors = [];
+
+        for (let index = 0; index < numberOfColors; index++) {
+
+            let numbers = [generatOneColor(), generatOneColor(), generatOneColor()].toString();
+        
+            allColors.push( `rgb(${numbers})`);
+            
+        }
+
+        allColors = allColors.join('<br>');
+
+        output.innerHTML = allColors;
+
+        // numbers = 'rgb('+numbers+')';
+
+        // console.log(numbers);
+
+    }
+
+
+    let age = '30'; // global declaration
+
+    if(true){
+        // local scope
+        // console.log(age);
+        let age = 40; 
+        // console.log(age);
+        age = 50
+        console.log(age);
+
+    }
+
+    console.log(age);
+    
+
+    function load(age) {
+        // local scope
+        return age;
+    }
+
+    console.log(load());
+
+    // let number1;
+    // var number2
+    // const  number3 = 30;
+
+    // number3 = 40;
+
+    function sum(number1, number2 = 50){
+        console.log(number1 + number2);
+        
+    }
+
+    sum(20); 
+    sum(20, 100); 
+
+
+
+    function add(number1, number2){
+
+        let number3 = 30;
+
+        
+        function multiply(number1, number4 = 30){
+
+            console.log(number1 * 3);
+            console.log(number4);
+
+            function check() {
+                console.log(number3 + number4); 
+            }
+
+            check();
+
+        }
+        multiply(4)
+    }
+
+    add(3, 4);
+
+
+    function viewAll() {
+
+        console.log(arguments[0]);
+        console.log(arguments[1]);
+        console.log(arguments[2]);
+        console.log(arguments[3]);
+        
+    }
+
+
+
+    
+    let name = 'sola';
+    console.log(name);
+    
+    viewAll(20, 30, 40, 70);
+
+    let addition = function() {
+            console.log(arguments);
+    }
+
+    addition(30, 40, 50)
+
+   let addition2 = (...sqi) =>  {
+        console.log(sqi);
+   }
+
+   addition2(30, 40, 50, 60);
+
+
+    // function addition() {
+    //     console.log(...arguments);
+    // }
+
+    
+
+
+</script>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Code Generator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef2f5;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      .page {
+        background: #dff3fb;
+        padding: 60px;
+        border-radius: 12px;
+      }
+
+      .card-wrapper {
+        display: flex;
+        width: 760px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      /* LEFT PANEL - form */
+      .left-panel {
+        background: #ffffff;
+        padding: 36px;
+        width: 50%;
+      }
+
+      .left-panel h2 {
+        margin: 0 0 24px 0;
+        color: #10243e;
+        font-size: 1.4rem;
+      }
+
+      label {
+        display: block;
+        color: #55606b;
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        margin-top: 16px;
+      }
+
+      .field {
+        display: flex;
+        border: 2px solid #cfe3f0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .field-prefix {
+        background: #dff3fb;
+        color: #10243e;
+        font-weight: bold;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        border: none;
+        padding: 12px 14px;
+        font-size: 1rem;
+        color: #10243e;
+        min-width: 0;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        font-weight: bold;
+      }
+
+      .btn-generate {
+        width: 100%;
+        margin-top: 28px;
+        padding: 14px 0;
+        background: #d7e33f;
+        color: #10243e;
+        border-radius: 30px;
+        font-size: 1rem;
+        transition: background 0.2s ease, transform 0.1s ease;
+      }
+
+      .btn-generate:hover {
+        background: #c3ce2f;
+      }
+
+      .btn-generate:active {
+        transform: scale(0.97);
+      }
+
+      /* RIGHT PANEL - results */
+      .right-panel {
+        background: #10243e;
+        width: 50%;
+        padding: 36px;
+        color: #ffffff;
+      }
+
+      .right-panel h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.4rem;
+      }
+
+      .right-panel p {
+        color: #a9b6c4;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .output {
+        max-height: 320px;
+        overflow-y: auto;
+      }
+
+      .empty-note {
+        color: #6f7f92;
+        font-size: 0.85rem;
+      }
+
+      .card {
+        background: #16304f;
+        border-top: 3px solid #d7e33f;
+        border-radius: 8px;
+        padding: 14px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+
+      .card .cardTitle {
+        color: #d7e33f;
+        font-weight: bold;
+        font-size: 0.95rem;
+      }
+    </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card-wrapper">
+
+    <div class="left-panel">
+      <h2>Voucher Code Generator</h2>
+
+      <label>Value</label>
+      <div class="field">
+        <span class="field-prefix">₦</span>
+        <input type="text" id="amountField" placeholder="e.g 500">
+      </div>
+
+      <label>How Many Vouchers</label>
+      <div class="field">
+        <input type="text" id="quantityField" placeholder="e.g 3">
+      </div>
+
+      <button class="btn-generate" onclick="generateCards()">Generate Vouchers</button>
+    </div>
+
+    <div class="right-panel">
+      <h2>Your Vouchers</h2>
+      <p>Sample voucher codes for this practice app. Click "Generate Vouchers" to create more.</p>
+
+      <div class="output" id="output">
+        <p class="empty-note">No vouchers generated yet.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+    let generatedCards = []
+
+function randomDigit(){
+    return Math.floor(Math.random() * 10)
+}
+
+function generateDigits(length){
+    let digits = ``
+
+    for(let i = 0; i < length; i++){
+        digits = digits + randomDigit()
+    }
+
+    return digits
+}
+
+function generateUniqueCardNumber(){
+    let newNumber = generateDigits(12)
+    let isDuplicate = true
+
+    while(isDuplicate){
+        isDuplicate = false
+
+        for(let i = 0; i < generatedCards.length; i++){
+            if(generatedCards[i].cardNumber === newNumber){
+                isDuplicate = true
+                newNumber = generateDigits(12)
+                break
+            }
+        }
+    }
+
+    return newNumber
+}
+
+function renderCards(){
+    let outputElement = document.getElementById(`output`)
+
+    if(generatedCards.length === 0){
+        outputElement.innerHTML = `<p class="empty-note">No vouchers generated yet.</p>`
+        return
+    }
+
+    let html = ``
+
+    // Show most recently generated vouchers first
+    for(let i = generatedCards.length - 1; i >= 0; i--){
+        let card = generatedCards[i]
+
+        html = html +
+            `<div class="card">` +
+                `<div class="cardTitle">Voucher — ₦${card.amount}</div>` +
+                `Code: VCH-${card.cardNumber}` +
+            `</div>`
+    }
+
+    outputElement.innerHTML = html
+}
+
+function generateCards(){
+    let amountElement = document.getElementById(`amountField`)
+    let quantityElement = document.getElementById(`quantityField`)
+
+    let amountText = amountElement.value.trim()
+    let quantityText = quantityElement.value.trim()
+
+    if(amountText === `` || quantityText === ``){
+        alert(`Both fields must not be empty!`)
+        return
+    }
+
+    if(isNaN(amountText) || isNaN(quantityText)){
+        alert(`Please input valid numbers!`)
+        return
+    }
+
+    let amount = +amountText
+    let quantity = +quantityText
+
+    if(amount <= 0 || quantity <= 0 || !Number.isInteger(quantity)){
+        alert(`Value must be positive and quantity must be a whole number greater than 0.`)
+        return
+    }
+
+    for(let i = 0; i < quantity; i++){
+        let newCard = {
+            cardNumber: generateUniqueCardNumber(),
+            amount: amount
+        }
+        generatedCards.push(newCard)
+    }
+
+    renderCards()
+
+    amountElement.value = ``
+    quantityElement.value = ``
+}
+
+</script>
+</body>
+</html>

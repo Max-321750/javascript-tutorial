@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Card Generator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef2f5;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+
+      .page {
+        background: #dff3fb;
+        padding: 60px;
+        border-radius: 12px;
+      }
+
+      .card-wrapper {
+        display: flex;
+        width: 760px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      /* LEFT PANEL - form */
+      .left-panel {
+        background: #ffffff;
+        padding: 36px;
+        width: 50%;
+      }
+
+      .left-panel h2 {
+        margin: 0 0 24px 0;
+        color: #10243e;
+        font-size: 1.4rem;
+      }
+
+      label {
+        display: block;
+        color: #55606b;
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        margin-top: 16px;
+      }
+
+      .field {
+        display: flex;
+        border: 2px solid #cfe3f0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .field-prefix {
+        background: #dff3fb;
+        color: #10243e;
+        font-weight: bold;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        border: none;
+        padding: 12px 14px;
+        font-size: 1rem;
+        color: #10243e;
+        min-width: 0;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        font-weight: bold;
+      }
+
+      .btn-generate {
+        width: 100%;
+        margin-top: 28px;
+        padding: 14px 0;
+        background: #d7e33f;
+        color: #10243e;
+        border-radius: 30px;
+        font-size: 1rem;
+        transition: background 0.2s ease, transform 0.1s ease;
+      }
+
+      .btn-generate:hover {
+        background: #c3ce2f;
+      }
+
+      .btn-generate:active {
+        transform: scale(0.97);
+      }
+
+      .btn-check {
+        width: 100%;
+        margin-top: 12px;
+        padding: 12px 0;
+        background: #ffffff;
+        color: #10243e;
+        border: 2px solid #cfe3f0;
+        border-radius: 30px;
+        font-size: 0.9rem;
+      }
+
+      .btn-check:hover {
+        background: #f4f9fc;
+      }
+
+      /* RIGHT PANEL - results */
+      .right-panel {
+        background: #10243e;
+        width: 50%;
+        padding: 36px;
+        color: #ffffff;
+      }
+
+      .right-panel h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.4rem;
+      }
+
+      .right-panel p {
+        color: #a9b6c4;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .output {
+        max-height: 320px;
+        overflow-y: auto;
+      }
+
+      .card {
+        background: #16304f;
+        border-top: 3px solid #d7e33f;
+        border-radius: 8px;
+        padding: 14px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+
+      .card .cardTitle {
+        color: #d7e33f;
+        font-weight: bold;
+        font-size: 0.95rem;
+      }
+
+      .status {
+        font-weight: bold;
+      }
+
+      .status-used {
+        color: #ff8080;
+      }
+
+      .status-unused {
+        color: #7CFFB2;
+      }
+    </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card-wrapper">
+
+    <div class="left-panel">
+      <h2>Recharge Card Generator</h2>
+
+      <label>Amount</label>
+      <div class="field">
+        <span class="field-prefix">₦</span>
+        <input type="text" id="amountField" placeholder="e.g 500">
+      </div>
+
+      <label>How Many Cards</label>
+      <div class="field">
+        <input type="text" id="quantityField" placeholder="e.g 3">
+      </div>
+
+      <button class="btn-generate" onclick="generateCards()">Generate Cards</button>
+      <button class="btn-check" onclick="checkCard()">Check A Card</button>
+    </div>
+
+    <div class="right-panel">
+      <h2>Your Cards</h2>
+      <p>Your generated recharge cards are shown below. Click "Generate Cards" to create more, or "Check A Card" to see if one has already been used.</p>
+
+      <div class="output" id="output"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+    let generatedCards = []
+
+// picks one random digit from 0 to 9
+function randomDigit(){
+    return Math.floor(Math.random() * 10)
+}
+
+// builds a string of random digits, however many "length" asks for
+function generateDigits(length){
+    let digits = ``
+
+    for(let i = 0; i < length; i++){
+        digits = digits + randomDigit()
+    }
+
+    return digits
+}
+
+// keeps generating a card number until it finds one that hasn't been used already
+function generateUniqueCardNumber(){
+    let newNumber = generateDigits(12)
+    let isDuplicate = true
+
+    while(isDuplicate){
+        isDuplicate = false
+
+        for(let i = 0; i < generatedCards.length; i++){
+            if(generatedCards[i].cardNumber === newNumber){
+                isDuplicate = true
+                newNumber = generateDigits(12)
+                break
+            }
+        }
+    }
+
+    return newNumber
+}
+
+// builds one full recharge card
+function generateCard(amount, provider){
+    let cardNumber = generateUniqueCardNumber()
+    let pin = generateDigits(4)
+
+    return {
+        provider: provider,
+        amount: amount,
+        cardNumber: cardNumber,
+        pin: pin,
+        used: false
+    }
+}
+
+// redraws every card that has been generated so far, including their used/unused status
+function displayCards(){
+    let outputField = document.getElementById(`output`)
+
+    outputField.innerHTML = ``
+
+    for(let index = 0; index < generatedCards.length; index++){
+        let card = generatedCards[index]
+
+        let statusText = card.used ? `USED` : `NOT USED`
+        let statusClass = card.used ? `status-used` : `status-unused`
+
+        outputField.innerHTML += `<div class="card">
+            <div class="cardTitle">${card.provider} - ₦${card.amount}</div>
+            Card Number: ${card.cardNumber}<br>
+            Pin: ${card.pin}<br>
+            Status: <span class="status ${statusClass}">${statusText}</span>
+        </div>`
+    }
+}
+
+// runs when "Generate Cards" is clicked
+function generateCards(){
+    let amountElement = document.getElementById(`amountField`)
+    let quantityElement = document.getElementById(`quantityField`)
+
+    let amountText = amountElement.value.trim()
+    let quantityText = quantityElement.value.trim()
+
+    if(amountText === `` || quantityText === ``){
+        alert(`Both fields must not be empty!`)
+    } else if(isNaN(amountText) || isNaN(quantityText)){
+        alert(`Please input valid numbers!`)
+    } else {
+
+        // ask which provider this batch of cards belongs to
+        let provider = prompt(`Which provider is this for? (e.g MTN, Glo, Airtel, 9mobile)`)
+
+        if(provider === null || provider.trim() === ``){
+            alert(`You must enter a provider to continue.`)
+        } else {
+
+            let amount = +amountText
+            let quantity = +quantityText
+
+            // confirm payment before generating anything
+            let paymentMade = confirm(`Confirm: has payment for ${quantity} card(s) of ₦${amount} been made?`)
+
+            if(!paymentMade){
+                alert(`Card generation cancelled - payment was not confirmed.`)
+            } else {
+
+                for(let i = 0; i < quantity; i++){
+                    let newCard = generateCard(amount, provider.trim())
+                    generatedCards.push(newCard)
+                }
+
+                displayCards()
+
+                amountElement.value = ``
+                quantityElement.value = ``
+
+                alert(`Payment confirmed! ${quantity} card(s) generated.`)
+
+            }
+
+        }
+
+    }
+
+}
+
+// runs when "Check A Card" is clicked
+function checkCard(){
+
+    let cardNumberInput = prompt(`Enter the card number you want to check:`)
+
+    if(cardNumberInput === null){
+        // user clicked cancel - do nothing
+    } else {
+
+        let cardNumberValue = cardNumberInput.trim()
+        let foundCard = null
+
+        for(let i = 0; i < generatedCards.length; i++){
+            if(generatedCards[i].cardNumber === cardNumberValue){
+                foundCard = generatedCards[i]
+                break
+            }
+        }
+
+        if(foundCard === null){
+            alert(`No card found with that number.`)
+        } else if(foundCard.used){
+            alert(`This card has already been used.`)
+        } else {
+
+            let markAsUsed = confirm(`This card has NOT been used yet. Mark it as used now?`)
+
+            if(markAsUsed){
+                foundCard.used = true
+                alert(`Card marked as used.`)
+                displayCards()
+            } else {
+                alert(`Card remains unused.`)
+            }
+
+        }
+
+    }
+
+}
+
+</script>
+</body>
+</html>

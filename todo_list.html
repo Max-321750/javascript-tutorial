@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #output:not(:empty) {
+            padding: 1em;
+            background-color: blueviolet;
+            color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <input id="inputField" />
+    <button onclick="todo()">ADD TODO LIST</button> <br><br>
+    <div id="output"></div>
+  </body>
+  <script>
+     let array = []
+     let outputField = document.getElementById('output')
+
+     function displayTodo() {
+            let list = ''
+            for (let index =0 ; index < array.length; index++) {
+              list = list + `${index + 1}. ${array[index]} <button onclick="editTodo(${index})">Edit</button> <button onclick="deleteTodo(${index})">Delete</button> <br>`
+            }
+              outputField.innerHTML = list
+     }
+
+    function todo() {
+      let inputFieldElement = document.getElementById(`inputField`);
+    //   let outputElement = document.getElementById(`output`);
+      let inputField = inputFieldElement.value.trim();
+
+        // display todo
+        if(inputField===''){
+            alert('inputField must not be empty')
+        }
+        else{ 
+            array.push(inputField)
+            console.log(array);
+            inputFieldElement.value= ""
+
+           displayTodo();
+         
+        }
+
+    }
+
+    // let allowDelete = confirm("Do you want to delete");
+    
+    // let username = prompt("Write your name").trim();
+
+    // if(!username){
+    //     alert('Invalid name supplied')
+    // }else{
+    //     alert("Welcome, "+username)
+    // }
+    
+
+    // console.log(allowDelete);
+    
+    // if(allowDelete) {
+    //     // document.body.innerHTML = 'You want to delete'
+    // }else{
+    //     // document.body.innerHTML = 'You cancelled'
+    // }
+
+
+    function editTodo(index) {
+        let newValue = prompt('Edit todo', array[index]).trim(); 
+        if(!newValue) return alert('Invalid value supplied');
+        array[index] = newValue; 
+
+        displayTodo()
+
+    }
+    function deleteTodo(index) {
+        
+        let allowDelete = confirm('Are you sure you want to delete'); 
+        if(allowDelete){
+            array.splice(index, 1);
+            displayTodo()
+        }
+    }
+  </script>
+</html>
