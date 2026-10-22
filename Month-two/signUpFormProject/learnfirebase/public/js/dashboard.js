@@ -16,6 +16,7 @@ const database = firebase.database();
 
 const userName = document.getElementById("userName");
 const username = document.getElementById("username");
+const mobileUsername = document.getElementById("mobileUsername");
 const chatMessages = document.getElementById("chatMessages");
 const messageInput = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
@@ -36,6 +37,7 @@ function authenticateUser() {
       const displayName = user.displayName || user.email || "User";
       userName.textContent = displayName.split(" ")[0];
       username.textContent = displayName;
+      mobileUsername.textContent = displayName;
       displayMessages(user);
     } else {
       window.location.href = "login.html";

@@ -19,6 +19,7 @@
         background: #f7f7fb;
         color: #17171c;
         height: 100vh;
+        height: 100dvh;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -47,6 +48,11 @@
 
       .topbar-welcome {
         font-size: 14px;
+      }
+
+      .mobile-brand,
+      .mobile-account {
+        display: none;
       }
 
       .logout-button {
@@ -474,6 +480,53 @@
     }
 
     @media (max-width: 500px) {
+      .topbar {
+        min-height: 58px;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 14px;
+      }
+
+      .mobile-brand {
+        display: block;
+        color: #5737d6;
+        font-size: 17px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .mobile-account {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 2px;
+        margin-left: auto;
+        line-height: 1.15;
+      }
+
+      .mobile-account strong {
+        overflow: hidden;
+        max-width: 120px;
+        color: #272530;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .mobile-account span {
+        color: #278657;
+        font-size: 11px;
+      }
+
+      .topbar-welcome {
+        display: none;
+      }
+
+      .logout-button {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
       .sidebar {
         display: none;
       }
@@ -490,6 +543,11 @@
 </head>
 <body>
   <div class="topbar">
+    <a href="index.html" class="mobile-brand">Quivox</a>
+    <div class="mobile-account">
+      <strong id="mobileUsername">Loading...</strong>
+      <span>Online</span>
+    </div>
     <span class="topbar-welcome">
       Welcome, <strong id="userName">Loading...</strong> 👋
     </span>

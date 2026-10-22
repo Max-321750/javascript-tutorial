@@ -11,7 +11,11 @@
   // Initialize Firebase
   const app = firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+document.getElementById("showPassword").addEventListener("change", (event) => {
+  document.getElementById("password").type = event.target.checked ? "text" : "password";
+});
 
 
 
@@ -55,6 +59,26 @@
   }
 }
 
+async function signInWithGoogle() {
+  const googleBtn = document.getElementById("googleBtn");
+  googleBtn.disabled = true;
+  googleBtn.setAttribute("aria-busy", "true");
+
+  try {
+    await auth.signInWithPopup(provider);
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    const message = error.code === "auth/popup-closed-by-user"
+      ? "Google sign-in was cancelled."
+      : error.code === "auth/popup-blocked"
+        ? "Your browser blocked the Google sign-in popup. Allow popups and try again."
+        : `Unable to sign in with Google: ${error.message}`;
+
+    alert(message);
+    googleBtn.disabled = false;
+    googleBtn.removeAttribute("aria-busy");
+  }
+}
 
 
 
